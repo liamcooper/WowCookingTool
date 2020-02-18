@@ -8,9 +8,6 @@ Strategy:
 Only calculate "orange" crafts.
 Always pick the next craft as the available recipe that goes "yellow" first
 '''
-import json
-with open("recipes.json", 'r') as f:
-    recipes = json.load(f)
 
 # Enter starting cooking skill
 skillLevel = 1
@@ -64,6 +61,16 @@ ingredients = {
     "White Spider Meat":            0,
     "Zesty Clam Meat":              0
 }
+# ========== User additions above this line ===================================
+
+# Import recipies data set frm JSON file
+import json
+with open("recipes.json", 'r') as f:
+    recipes = json.load(f)
+
+# Placeholders for adding information to during processing
+usedRecipies = set()
+usedAddMats = dict()
 
 def findNextCraft(ingredients, recipes, currentSkill):
     temp = dict()
@@ -88,6 +95,22 @@ def findNextCraft(ingredients, recipes, currentSkill):
                 candidateName = ingredient
 
     return candidateName
+
+def printDict(dictName):
+    for key, value in dictName.items():
+        print(str(key) + ": " + str(value))
+    return
+
+def sumAddMats(listOfMats, listOfMatsToAdd):
+    # Loop oven items to be added
+    for key, value in listOfMatsToAdd.items():
+        # If the item already exists
+        if key in listOfMats:
+            # Sum the existing and added amounts
+            listOfMats[key] += listOfMatsToAdd[key]
+        else:
+            # Else add the new item
+            listOfMats[key] = value
 
 # Iterate as long as there are relevant recipes left
 while True:
@@ -120,22 +143,26 @@ while True:
     # "Announce" the craft
     print(str(skillLevel) + ": " + recipes[candidate]["Recipe"] + " (" + str(candidate) + ")")
 
+    # Add recipe name to set of used recipes
+    usedRecipies.add(recipes[candidate]["Recipe"])
+
+    # Add additional mats to the total sum
+    sumAddMats(usedAddMats, recipes[candidate]["AddMats"])
+
     # Increment current skill level
     skillLevel += 1
 
     # "Consume" the ingredient
-    ingredients[candidate] = ingredients[candidate]-1
+    ingredients[candidate] = ingredients[candidate]-recipes[candidate]["Amount"]
     
 
 # Announce final skill level reached
-print("Skill reached: " + str(skillLevel))
+print("\nSkill reached: " + str(skillLevel))
 
-# ========================================
+## Announce list of recipes used
+print("\nRecipes used:")
+print("\n".join(usedRecipies))
 
-#print(findNextCraft(recipes, skillLevel))
-
-#print(ingredients)
-#print(recipes)
-
-#for x in recipes:
-#    print(x)
+# Announce additional mats used
+print("\nAdditional mats used:")
+printDict(usedAddMats)
