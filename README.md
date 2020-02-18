@@ -7,7 +7,7 @@ Do you find yourself wondering "How much cooking could I level just with all the
 
 Then this is the tool for you!
 
-This tool lets you enter you current cooking level and the amount of different ingredients you have available and outputs the following:
+This tool lets you enter you current cooking level and the amount of different ingredients you have available and outputs the following to a text file:
 1. A step by step list of what crafts to do at each skill level
 2. A sum of all the required recipes used in YOUR crafting sequence
 3. A sum of all spices etc. required for the planned crafts
@@ -21,3 +21,4 @@ This tool lets you enter you current cooking level and the amount of different i
 2. Edit `skillLevel` to indicate your current cooking level
 3. Edit the `ingredients` structure to show your current stockpile of the various ingredients
 4. Run `calculate.py` (e.g. `./calculate.py`)
+5. The step by step guide is now available in `output.txt`
