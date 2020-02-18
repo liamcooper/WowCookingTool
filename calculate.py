@@ -1,13 +1,5 @@
 #!/usr/bin/env python3.7
 
-'''
-Answer the question "to what level can I get my cooking if I have X materials
-available?"
-
-Strategy:
-Only calculate "orange" crafts.
-Always pick the next craft as the available recipe that goes "yellow" first
-'''
 # =============================================================================
 # ========== User additions below this line ===================================
 # =============================================================================
@@ -158,8 +150,7 @@ while True:
     skillLevel += 1
 
     # "Consume" the ingredient
-    ingredients[candidate] = ingredients[candidate]-recipes[candidate]["Amount"]
-    
+    ingredients[candidate] = ingredients[candidate]-recipes[candidate]["Amount"] 
 
 # Announce final skill level reached
 print("\nSkill reached: " + str(skillLevel))
