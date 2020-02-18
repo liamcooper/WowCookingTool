@@ -8,6 +8,9 @@ Strategy:
 Only calculate "orange" crafts.
 Always pick the next craft as the available recipe that goes "yellow" first
 '''
+# =============================================================================
+# ========== User additions below this line ===================================
+# =============================================================================
 
 # Enter starting cooking skill
 skillLevel = 1
@@ -61,7 +64,9 @@ ingredients = {
     "White Spider Meat":            0,
     "Zesty Clam Meat":              0
 }
+# =============================================================================
 # ========== User additions above this line ===================================
+# =============================================================================
 
 # Import recipies data set frm JSON file
 import json
