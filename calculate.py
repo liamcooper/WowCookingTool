@@ -165,9 +165,9 @@ while True:
 print("\nSkill reached: " + str(skillLevel))
 
 ## Announce list of recipes used
-print("\nRecipes used:")
+print("\nRecipes required:")
 print("\n".join(usedRecipies))
 
 # Announce additional mats used
-print("\nAdditional mats used:")
+print("\nAdditional mats required:")
 printDict(usedAddMats)
