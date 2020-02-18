@@ -9,8 +9,13 @@ Then this is the tool for you!
 
 This tool lets you enter you current cooking level and the amount of different ingredients you have available and outputs the following to a text file:
 1. A step by step list of what crafts to do at each skill level
-2. A sum of all the required recipes used in YOUR crafting sequence
-3. A sum of all spices etc. required for the planned crafts
+2. The maximum level achievable with the available ingredients
+3. A sum of all the required recipes used in YOUR crafting sequence
+4. A sum of all spices etc. required for the planned crafts
+
+## Working principle
+1. Will only plan crafts that are GUARANTEED to give you a skill up (i.e. "orange" crafts)
+2. When multiple crafts are available will prioritize the recipe that will become "yellow" first
 
 ## Requirements:
 1. `recipes.json` and `calculate.py` in the same folder
