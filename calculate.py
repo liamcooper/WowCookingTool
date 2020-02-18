@@ -65,6 +65,9 @@ import json
 with open("recipes.json", 'r') as f:
     recipes = json.load(f)
 
+# Open output file for writing
+outputFile = open("output.txt", 'w')
+
 # Placeholders for adding information to during processing
 usedRecipies = set()
 usedAddMats = dict()
@@ -95,7 +98,7 @@ def findNextCraft(ingredients, recipes, currentSkill):
 
 def printDict(dictName):
     for key, value in dictName.items():
-        print(str(key) + ": " + str(value))
+        outputFile.write(str(key) + ": " + str(value))
     return
 
 def sumAddMats(listOfMats, listOfMatsToAdd):
@@ -138,7 +141,7 @@ while True:
         break
 
     # "Announce" the craft
-    print(str(skillLevel) + ": " + recipes[candidate]["Recipe"] + " (" + str(candidate) + ")")
+    outputFile.write(str(skillLevel) + ": " + recipes[candidate]["Recipe"] + " (" + str(candidate) + ")\n")
 
     # Add recipe name to set of used recipes
     usedRecipies.add(recipes[candidate]["Recipe"])
@@ -153,12 +156,16 @@ while True:
     ingredients[candidate] = ingredients[candidate]-recipes[candidate]["Amount"] 
 
 # Announce final skill level reached
-print("\nSkill reached: " + str(skillLevel))
+outputFile.write("\nSkill reached: " + str(skillLevel))
 
 ## Announce list of recipes used
-print("\nRecipes required:")
-print("\n".join(usedRecipies))
+outputFile.write("\n\nRecipes required:\n")
+outputFile.write("\n".join(usedRecipies))
 
 # Announce additional mats used
-print("\nAdditional mats required:")
+outputFile.write("\n\nAdditional mats required:\n")
 printDict(usedAddMats)
+outputFile.write("\n")
+
+# Close output file
+outputFile.close()
