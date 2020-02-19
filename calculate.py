@@ -72,6 +72,7 @@ outputFile = open("output.txt", 'w')
 usedRecipies = set()
 usedIngredients = dict()
 usedAddMats = dict()
+outputDict = dict()
 
 def findNextCraft(ingredients, recipes, currentSkill):
     temp = dict()
@@ -100,6 +101,22 @@ def findNextCraft(ingredients, recipes, currentSkill):
 def printDict(dictName):
     for key, value in dictName.items():
         outputFile.write(str(key) + ": " + str(value) + "\n")
+    return
+
+def storeOutput(ingredient, recipes, currentSkill):
+    # Check if this is the first item to be added (dictionary empty)
+    if not bool(outputDict):
+        # Add item at the start
+        outputDict[1] =  {"Start": currentSkill, "Count": 1, "Recipe": recipes[ingredient]["Recipe"], "Ingredient": ingredient}
+    else:
+        lastCraft = list(outputDict.keys())[-1]
+        #lastCraft = list(reversed(list(outputDict)))[0]
+        if outputDict[lastCraft]["Ingredient"] == ingredient:
+            # Increment count
+            outputDict[lastCraft]["Count"] += 1
+        else:
+            # Add new post to output
+            outputDict[lastCraft+1] =  {"Start": currentSkill, "Count": 1, "Recipe": recipes[ingredient]["Recipe"], "Ingredient": ingredient}
     return
 
 def sumAddMats(listOfMats, listOfMatsToAdd):
@@ -149,8 +166,8 @@ while True:
     if not candidate:
         break
 
-    # "Announce" the craft
-    outputFile.write(str(skillLevel) + ": " + recipes[candidate]["Recipe"] + " (" + str(candidate) + ")\n")
+    # Store output
+    storeOutput(candidate, recipes, skillLevel)
 
     # Add recipe name to set of used recipes
     usedRecipies.add(recipes[candidate]["Recipe"])
@@ -167,18 +184,23 @@ while True:
     # "Consume" the ingredient
     ingredients[candidate] = ingredients[candidate]-recipes[candidate]["Amount"] 
 
+# Print guide
+for key, value in outputDict.items():
+    outputFile.write(str(key) + ": Craft " + str(value["Count"]) + " " + str(value["Recipe"]) + " (" + str(value["Ingredient"]) + "]\n")
+
 # Announce final skill level reached
 outputFile.write("\nSkill reached: " + str(skillLevel))
 
-## Announce list of recipes used
+# Announce list of recipes used
 outputFile.write("\n\nRecipes required:\n")
 outputFile.write("\n".join(usedRecipies))
 
+# Announce ingredients used
 outputFile.write("\n\nIngredients used:\n")
 printDict(usedIngredients)
 
 # Announce additional mats used
-outputFile.write("\n\nAdditional mats required:\n")
+outputFile.write("\nAdditional mats required:\n")
 printDict(usedAddMats)
 outputFile.write("\n")
 
