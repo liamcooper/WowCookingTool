@@ -70,6 +70,7 @@ outputFile = open("output.txt", 'w')
 
 # Placeholders for adding information to during processing
 usedRecipies = set()
+usedIngredients = dict()
 usedAddMats = dict()
 
 def findNextCraft(ingredients, recipes, currentSkill):
@@ -98,7 +99,7 @@ def findNextCraft(ingredients, recipes, currentSkill):
 
 def printDict(dictName):
     for key, value in dictName.items():
-        outputFile.write(str(key) + ": " + str(value))
+        outputFile.write(str(key) + ": " + str(value) + "\n")
     return
 
 def sumAddMats(listOfMats, listOfMatsToAdd):
@@ -111,6 +112,14 @@ def sumAddMats(listOfMats, listOfMatsToAdd):
         else:
             # Else add the new item
             listOfMats[key] = value
+    return
+
+def sumIngredients(ingredient, amount):
+    if ingredient in usedIngredients:
+        usedIngredients[ingredient] += amount
+    else:
+        usedIngredients[ingredient] = amount
+    return
 
 # Iterate as long as there are relevant recipes left
 while True:
@@ -146,6 +155,9 @@ while True:
     # Add recipe name to set of used recipes
     usedRecipies.add(recipes[candidate]["Recipe"])
 
+    # Add the used ingredient to the count
+    sumIngredients(candidate, recipes[candidate]["Amount"])
+
     # Add additional mats to the total sum
     sumAddMats(usedAddMats, recipes[candidate]["AddMats"])
 
@@ -161,6 +173,9 @@ outputFile.write("\nSkill reached: " + str(skillLevel))
 ## Announce list of recipes used
 outputFile.write("\n\nRecipes required:\n")
 outputFile.write("\n".join(usedRecipies))
+
+outputFile.write("\n\nIngredients used:\n")
+printDict(usedIngredients)
 
 # Announce additional mats used
 outputFile.write("\n\nAdditional mats required:\n")
