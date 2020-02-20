@@ -14,7 +14,7 @@ ingredients = {
     "Boar Ribs":                    0,
     "Buzzard Wing":                 0,
     "Chunk of Boar Meat":           50,
-    "Clam Meat":                    20,
+    "Clam Meat":                    31,
     "Coyote Meat":                  0,
     "Crawler Meat":                 0,
     "Darkclaw Lobster":             0,
@@ -206,3 +206,4 @@ outputFile.write("\n")
 
 # Close output file
 outputFile.close()
+
