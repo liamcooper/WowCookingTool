@@ -186,7 +186,7 @@ while True:
 
 # Print guide
 for key, value in outputDict.items():
-    outputFile.write(str(key) + ": Craft " + str(value["Count"]) + " " + str(value["Recipe"]) + " (" + str(value["Ingredient"]) + "]\n")
+    outputFile.write(str(key) + ": Skill " + str(value["Start"]) + "->" + str(value["Start"] + value["Count"]) + " craft " + str(value["Recipe"]) + " (" + str(value["Ingredient"]) + "]\n")
 
 # Announce final skill level reached
 outputFile.write("\nSkill reached: " + str(skillLevel))
