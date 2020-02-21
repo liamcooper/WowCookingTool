@@ -18,6 +18,7 @@ ingredients = {
     "Coyote Meat":                  0,
     "Crawler Meat":                 0,
     "Darkclaw Lobster":             0,
+		"Giant Egg":										0,
     "Lean Wolf Flank":              0,
     "Lion Meat":                    0,
     "Meaty Bat Wing":               20,
