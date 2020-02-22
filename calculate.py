@@ -9,30 +9,30 @@ skillLevel = 1
 
 # List amount of available ingredients
 ingredients = {
-    "Bear Meat":                    40,
-    "Big Bear Meat":                0,
+    "Bear Meat":                    0,
+    "Big Bear Meat":                40,
     "Boar Ribs":                    0,
-    "Buzzard Wing":                 0,
-    "Chunk of Boar Meat":           50,
+    "Buzzard Wing":                 10,
+    "Chunk of Boar Meat":           32,
     "Clam Meat":                    31,
     "Coyote Meat":                  0,
-    "Crawler Meat":                 0,
+    "Crawler Meat":                 11,
     "Darkclaw Lobster":             0,
-		"Giant Egg":										0,
-    "Lean Wolf Flank":              0,
-    "Lion Meat":                    0,
-    "Meaty Bat Wing":               20,
-    "Mystery Meat":                 0,
-    "Raptor Egg":                   0,
+		"Giant Egg":										125,
+    "Lean Wolf Flank":              58,
+    "Lion Meat":                    21,
+    "Meaty Bat Wing":               21,
+    "Mystery Meat":                 87,
+    "Raptor Egg":                   10,
     "Raptor Flesh":                 0,
     "Raw Brilliant Smallfish":      0,
-    "Raw Bristle Whisker Catfish":  0,
+    "Raw Bristle Whisker Catfish":  9,
     "Raw Glossy Mightfish":         0,
     "Raw Greater Sagefish":         0,
     "Raw Longjaw Mud Snapper":      0,
     "Raw Mithril Head Trout":       0,
     "Raw Nightfin Snapper":         0,
-    "Raw Rainbow Fin Albacore":     0,
+    "Raw Rainbow Fin Albacore":     4,
     "Raw Redgill":                  0,
     "Raw Rockscale Cod":            0,
     "Raw Sagefish":                 0,
@@ -40,22 +40,22 @@ ingredients = {
     "Raw Summer Bass":              0,
     "Raw Sunscale Salmon":          0,
     "Raw Whitescale Salmon":        0,
-    "Red Wolf Meat":                0,
+    "Red Wolf Meat":                112,
     "Sandworm Meat":                0,
-    "Scorpid Stinger":              0,
-    "Small Egg":                    0,
-    "Stag Meat":                    0,
-    "Strider Meat":                 0,
-    "Stringy Wolf Meat":            0,
-    "Tangy Clam Meat":              0,
-    "Tender Crab Meat":             0,
-    "Tender Crocolisk Meat":        0,
-    "Tender Wolf Meat":             0,
-    "Thunder Lizard Tail":          0,
-    "Turtle Meat":                  0,
-    "Tiger Meat":                   0,
-    "White Spider Meat":            0,
-    "Zesty Clam Meat":              0
+    "Scorpid Stinger":              21,
+    "Small Egg":                    3,
+    "Stag Meat":                    2,
+    "Strider Meat":                 23,
+    "Stringy Wolf Meat":            23,
+    "Tangy Clam Meat":              78,
+    "Tender Crab Meat":             10,
+    "Tender Crocolisk Meat":        39,
+    "Tender Wolf Meat":             8,
+    "Thunder Lizard Tail":          14,
+    "Turtle Meat":                  24,
+    "Tiger Meat":                   6,
+    "White Spider Meat":            9,
+    "Zesty Clam Meat":              61
 }
 # =============================================================================
 # ========== User additions above this line ===================================
@@ -187,7 +187,7 @@ while True:
 
 # Print guide
 for key, value in outputDict.items():
-    outputFile.write(str(key) + ": Skill " + str(value["Start"]) + "->" + str(value["Start"] + value["Count"]) + " craft " + str(value["Recipe"]) + " (" + str(value["Ingredient"]) + "]\n")
+    outputFile.write(str(key) + ": Skill " + str(value["Start"]) + "->" + str(value["Start"] + value["Count"]) + " craft " + str(value["Recipe"]) + " (" + str(value["Ingredient"]) + ")\n")
 
 # Announce final skill level reached
 outputFile.write("\nSkill reached: " + str(skillLevel))
