@@ -101,6 +101,16 @@ recipes = {
         "Green":    285,
         "Grey":     305
     },
+		"Kodo Meat": {
+				"Recipe":		"Roasted Kodo Meat",
+				"Source":		"Recipe",
+				"Amount":		1,
+				"AddMats":	{"Mild Spices": 1},
+				"Learn":		35,
+				"Yellow":		75,
+				"Green":		95,
+				"Grey":			115
+		},
     "Lean Wolf Flank": {
         "Recipe":   "Lean Wolf Steak",
         "Source":   "Recipe",
