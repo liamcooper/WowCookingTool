@@ -18,8 +18,8 @@ ingredients = {
     "Coyote Meat":                  0,
     "Crawler Meat":                 11,
     "Darkclaw Lobster":             0,
-	"Giant Egg":					125,
-	"Kodo Meat":					2,
+    "Giant Egg":                    125,
+    "Kodo Meat":                    2,
     "Lean Wolf Flank":              100,
     "Lion Meat":                    21,
     "Meaty Bat Wing":               33,
@@ -171,8 +171,9 @@ while True:
     # Store output
     storeOutput(candidate, recipes, skillLevel)
 
-    # Add recipe name to set of used recipes
-    usedRecipies.add(recipes[candidate]["Recipe"])
+    # Add recipe name to set of used recipes if it isn't learned at a trainer
+    if recipes[candidate]["Source"] == "Recipe":
+        usedRecipies.add(recipes[candidate]["Recipe"])
 
     # Add the used ingredient to the count
     sumIngredients(candidate, recipes[candidate]["Amount"])
@@ -195,7 +196,7 @@ outputFile.write("\nSkill reached: " + str(skillLevel))
 
 # Announce list of recipes used
 outputFile.write("\n\nRecipes required:\n")
-outputFile.write("\n".join(usedRecipies))
+outputFile.write("\n".join(sorted(usedRecipies)))
 
 # Announce ingredients used
 outputFile.write("\n\nIngredients used:\n")
